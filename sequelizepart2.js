@@ -292,3 +292,12 @@ User.findAll({
     include:[{model:Task,required:true},{model:Tool,as:'Instruments',required:true}]
     
 }).then(data=>console.log(JSON.stringify(data)));
+
+
+
+//from another file just for example how multiple times attributes attribute etc... can be used inside include everytime
+
+  Marks.findAll({attributes:['sub_id','std_id'],order:Sequelize.literal('sub_id DESC'),
+    include:[{model:Students,as:'id',required:true,attributes:['name']},
+              {model:Subjects,as:'ids',required:true,attributes:['name']}]
+  }).then(data=>res.send(JSON.stringify(data)));
